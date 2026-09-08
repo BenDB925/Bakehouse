@@ -2,9 +2,9 @@
 
 Copyright © 2026 Benny Delaney-Brownlow. All rights reserved.
 
-This licence covers both Bakehouse plugins for VCV Rack — the free
+This licence covers both Bakehouse plugins for VCV Rack: the free
 **Bakehouse** plugin (Whisk) and the commercial **Bakehouse Plus** plugin
-(Whisk Expander) — together with their binaries, panel art, other bundled
+(Whisk Expander), together with their binaries, panel art, other bundled
 resources, and this manual.
 
 ## Software
