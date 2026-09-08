@@ -47,6 +47,30 @@ Each layer has the same four knobs. `SHIFT` gives each of them a second job.
 | `OCT` | Centre octave, `−3` to `+3`. | `RNG` sets how far the next generated phrase can roam: half an octave at minimum, about 1¼ at centre, and two octaves at maximum. |
 | `DRIFT` | How **often** the melody evolves while it plays. At zero it stays where it is. Default 0. | `SHP` sets how closely the second half of a phrase answers the first. |
 
+#### What the personalities mean
+
+`PERS` decides which notes in the selected scale can be the melody's main
+destinations. Whisk ranks the available notes from settled to colourful: the
+tonic first, then the closest notes the selected scale has to a fifth, major
+third, major seventh, major second, major sixth and fourth. Each personality
+opens more of that list:
+
+| Personality | Main note pool | In a seven-note major scale |
+| --- | --- | --- |
+| **Root Only** | Tonic only. | Root. |
+| **Triadic** | The first 30% of the scale's notes, rounded to the nearest whole note. | Root and fifth. |
+| **Balanced** | The first 55%: enough stable notes for melodic movement without using most of the scale's tension notes as destinations. | Root, fifth, third and seventh. |
+| **Colourful** | The first 80%: most of the scale, including brighter and less settled destinations. | Root, fifth, third, seventh, second and sixth. |
+| **Free** | Every note in the scale. | All seven notes. |
+
+For reference, the five personalities admit `1 / 2 / 4 / 6 / 7` main notes in
+a seven-note scale, `1 / 2 / 3 / 4 / 5` in a five-note scale, and
+`1 / 4 / 7 / 10 / 12` in Chromatic. Balanced, Colourful and Free may also use
+other in-scale notes briefly to connect two destinations smoothly; those notes
+do not become part of the personality's main pool. About one phrase in four
+also aims for a deliberately unsettled final note; for that final note only,
+Balanced can draw from the same 80% pool as Colourful.
+
 ### Per-layer buttons and lights
 
 | Control | What it does |
@@ -62,7 +86,7 @@ Each layer has the same four knobs. `SHIFT` gives each of them a second job.
 | `CLK` | Clock. Every rising edge advances the sequence; each layer's `PACE` divides or multiplies it. |
 | `RST` | Reset. Returns both layers to the start of their phrase and restarts both `PACE` clocks. This is the only control that takes effect immediately rather than at the next note. |
 | `GEN` | Trigger input. Same as pressing a `GEN` button. Use **Gen trigger targets** in the right-click menu to send it to Layer 1, Layer 2 or Both (the default). |
-| `DRIFT` | CV added to the `DRIFT` knob amount. Use **Drift CV targets** in the right-click menu to send it to Layer 1, Layer 2 or Both (the default). |
+| `DRIFT` | CV added to the `DRIFT` knob amount: each `1 V` adds 10 percentage points, so `+5 V` adds 50% and `+10 V` takes a zero knob to maximum. Negative voltage subtracts the same way. The final amount is clamped to 0–100%, so the exact rule is `clamp(knob + volts / 10)`. Use **Drift CV targets** in the right-click menu to send it to Layer 1, Layer 2 or Both (the default). |
 
 ### Outputs
 
@@ -143,7 +167,7 @@ It is not available on MetaModule.
 | --- | --- |
 | `SAVE` | Arms one capture. Press it again to cancel. Otherwise, the next `A`–`H` press writes that slot and disarms. A capture saves both sounding phrases and each layer's `PACE`, `DENS`, `OCT`, `DRIFT`, `PERS`, `LEN`, `RNG` and `SHP`. It does not interrupt the current note. |
 | `A` `B` `C` `D` `E` `F` `G` `H` | Eight scene slots. With `SAVE` armed, a press saves into that slot. Otherwise a press **cues** that scene; pressing the scene already playing re-launches it. Each button is lit: dark for an empty slot, a dim glow for one holding a scene, full brightness for the scene you are hearing, a slow pulse for one cued and waiting, and a berry pulse across all eight while `SAVE` is armed. |
-| `SCENE` | Scene selector CV. 0–10 V across eight equal bands, `A` at the bottom to `H` at the top, clamping outside that range. Empty slots do nothing and a steady voltage does not retrigger. With nothing patched it selects nothing. |
+| `SCENE` | Scene selector CV: `A` below `1.25 V`; `B` from `1.25` to below `2.50 V`; `C` from `2.50` to below `3.75 V`; `D` from `3.75` to below `5.00 V`; `E` from `5.00` to below `6.25 V`; `F` from `6.25` to below `7.50 V`; `G` from `7.50` to below `8.75 V`; `H` from `8.75 V` upward. Voltages outside 0–10 V clamp to `A` or `H`. Empty slots do nothing and a steady voltage does not retrigger. With nothing patched it selects nothing. |
 
 ### Launch row
 
@@ -161,7 +185,7 @@ brings back.
 | Control | What it does |
 | --- | --- |
 | `LAYER 1` knob, `LAYER 2` knob | Moves that layer up or down by whole scale steps, with a limit of one octave in either direction. This does not alter saved scenes. Return the knob to centre with no CV to hear the saved pitch again. |
-| `LAYER 1 CV`, `LAYER 2 CV` | 1 V per scale step, added to that layer's knob before the one-octave limit. Unpatched adds nothing. |
+| `LAYER 1 CV`, `LAYER 2 CV` | `1 V` per scale step: `+1 V` moves up one note of the selected scale and `−1 V` moves down one. Fractional voltages are rounded to the nearest whole volt (`±0.5 V` starts the first step), then added to the knob's whole-step shift. The result is limited to one scale octave up or down. Unpatched adds nothing. |
 
 The two layers are independent, so either can move alone.
 
@@ -172,7 +196,7 @@ One row, inputs then outputs.
 | Jack | What it does |
 | --- | --- |
 | `GEN LAYER 1`, `GEN LAYER 2` | Generates a new phrase for that layer alone on each rising edge, exactly as that layer's own `GEN` button does. A held gate fires once. Neither jack saves or recalls a scene. |
-| `FLOW CV` | Only ever lengthens a changeover. 0–10 V adds up to the full extra length on top of the `FLOW` knob and stops at the same maximum; negative voltage adds nothing, and unpatching it puts the knob back in sole charge. |
+| `FLOW CV` | Only ever lengthens a changeover. Each `1 V` adds 10% to the `FLOW` knob, with the total clamped at 100%; negative voltage adds nothing. With the knob at zero: `0 V` cuts instantly, above `0` through `3⅓ V` gives one intermediate playthrough, above `3⅓` through `6⅔ V` gives two, and above `6⅔ V` gives three. Unpatching it puts the knob back in sole charge. |
 | `END LAYER 1`, `END LAYER 2` | Fires when that layer finishes a playthrough and starts the next. It sends one trigger per phrase, whatever the phrase length. A held note is not a boundary, and reset does not fire it. |
 | `ARRIVE` | Fires once when a launched scene has fully taken over. With `FLOW` at zero, it fires at the handoff. With `FLOW` raised, it fires at the end of the changeover. If you choose another scene during a changeover, only the scene that finally arrives sends the trigger. |
 
