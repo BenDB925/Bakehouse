@@ -3,7 +3,7 @@
 Copyright © 2026 Benny Delaney-Brownlow. All rights reserved.
 
 This licence covers both Bakehouse plugins for VCV Rack: the free
-**Bakehouse** plugin (Whisk) and the commercial **Bakehouse Plus** plugin
+**Bakehouse** plugin (Whisk) and the commercial **Bakehouse Treats** plugin
 (Whisk Expander), together with their binaries, panel art, other bundled
 resources, and this manual.
 
@@ -12,7 +12,7 @@ resources, and this manual.
 **Bakehouse** is distributed free of charge. You may download, install and use
 it, in personal and commercial music, with no fee and no further permission.
 
-**Bakehouse Plus** is a commercial plugin. Buying it grants you the same right
+**Bakehouse Treats** is a commercial plugin. Buying it grants you the same right
 to install and use it, in personal and commercial music, on the computers you
 use.
 

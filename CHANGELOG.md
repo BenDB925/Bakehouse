@@ -24,7 +24,7 @@ First public release of both plugins.
 - No knob or CV change is heard mid-note: the sounding note keeps its pitch and
   full length, and the change lands at the next onset.
 
-### Bakehouse Plus (US $5): Whisk Expander
+### Bakehouse Treats (US $5): Whisk Expander
 
 - **Whisk Expander**, a 20 HP Rack-only expander that mounts to a Whisk's right
   and turns it into an eight-scene launcher.

@@ -146,7 +146,7 @@ Saving and reloading a patch keeps what you are hearing and what home is.
 
 ## Whisk Expander
 
-*Paid plugin `Bakehouse Plus`, US $5 · 20 HP · Rack only · Expander, Sequencer*
+*Paid plugin `Bakehouse Treats`, US $5 · 20 HP · Rack only · Expander, Sequencer*
 
 The Whisk Expander mounts directly to a Whisk's **right** and turns it into an
 eight-scene launcher. You can save and recall complete Layer 1 / Layer 2 moments,

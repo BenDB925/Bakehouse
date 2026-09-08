@@ -6,7 +6,7 @@ Delaney-Brownlow.
 | Plugin | Price | Module |
 | --- | --- | --- |
 | **Bakehouse** | free | **Whisk**, a 12 HP dual-layer generative sequencer |
-| **Bakehouse Plus** | US $5 | **Whisk Expander**, a 20 HP eight-scene launcher for Whisk |
+| **Bakehouse Treats** | US $5 | **Whisk Expander**, a 20 HP eight-scene launcher for Whisk |
 
 ## Whisk
 
