@@ -84,7 +84,7 @@ Balanced can draw from the same 80% pool as Colourful.
 | Jack | What it does |
 | --- | --- |
 | `CLK` | Clock. Every rising edge advances the sequence; each layer's `PACE` divides or multiplies it. |
-| `RST` | Reset. Returns both layers to the start of their phrase and restarts both `PACE` clocks. This is the only control that takes effect immediately rather than at the next note. |
+| `RST` | Reset. Returns both layers to the start of their phrase and restarts both `PACE` clocks. Along with the clock and `GEN`, it acts at once rather than waiting for the next note the way knob and CV changes do. |
 | `GEN` | Trigger input. Same as pressing a `GEN` button. Use **Gen trigger targets** in the right-click menu to send it to Layer 1, Layer 2 or Both (the default). |
 | `DRIFT` | CV added to the `DRIFT` knob amount: each `1 V` adds 10 percentage points, so `+5 V` adds 50% and `+10 V` takes a zero knob to maximum. Negative voltage subtracts the same way. The final amount is clamped to 0–100%, so the exact rule is `clamp(knob + volts / 10)`. Use **Drift CV targets** in the right-click menu to send it to Layer 1, Layer 2 or Both (the default). |
 
@@ -108,25 +108,27 @@ Balanced can draw from the same 80% pool as Colourful.
 
 ### What DRIFT actually does
 
-`DRIFT` controls how **often** a melody evolves. Turn it up for more frequent
-changes or down for occasional ones. It does not control the size of each
-change, so low and high settings explore the same kinds of ideas at different
-speeds.
+`DRIFT` controls how **often** a melody evolves, how many changes it makes
+before turning back, and how long it rests at home once it returns. Turn it up
+for a busier melody that travels further; turn it down for occasional changes
+and a quick return. In **Anchored** it also tilts the odds toward bolder
+changes.
 
-Most changes are small and rework one part of the phrase. A medium change may
-reshape a stretch of the melody for a repetition or two. **Free** mode can also
-take a rare **wild excursion**, making a bolder change for a few repetitions
-before it comes back. **Anchored** sticks to small and medium changes.
+Most changes are small and rework one part of the phrase. A medium change
+reshapes half the phrase for a repetition or two. A rare **wild excursion**
+goes further: in **Free** it rewrites half the phrase, and in **Anchored** it
+reworks the whole thing while keeping the opening and the ending of the tune
+you started with. **Free** wanders further from home before it turns back.
 
 The original tune never disappears completely. Every ordinary change keeps at
 least two recognizable parts of the phrase, such as its opening, cadence,
 signature holds or the relationship between its two halves. Phrases with one to
 three notes are left alone, and an empty phrase does not evolve.
 
-Eventually the melody comes home. Usually it returns as a variation of the
-original phrase, keeping one idea it picked up along the way. Sometimes it
-returns exactly as it started. The returned phrase then plays through at least
-once before it can change again.
+Eventually the melody comes home, and it always arrives exactly on the phrase
+it left — but not in one jump. It gives back a little more of home over two or
+three playthroughs. Home then plays untouched for a few playthroughs before
+anything can change again, and the higher `DRIFT` is, the longer that rest.
 
 Set `DRIFT` to zero to pause the melody where it is. Turn it back up and the
 journey continues. A completed `SHIFT`+`GEN` undo returns to that layer's
