@@ -99,7 +99,7 @@ Balanced can draw from the same 80% pool as Colourful.
 
 | Item | What it does |
 | --- | --- |
-| **Layer 1 ▸ Gate length**, **Layer 2 ▸ Gate length** | Slider, 0% to 100%, per layer, default 50%. At 0% each note is the shortest trigger a downstream module can still see. At 100% a note holds for its whole step, so consecutive sounding notes join into one continuous gate. In between, the gate is that fraction of the step. Notes the phrase wrote as ties hold through as written, whatever this is set to. |
+| **Layer 1 ▸ Gate length**, **Layer 2 ▸ Gate length** | Slider, 0% to 100%, per layer, default 50%. The percentage is relative to that note's full slot: one step for an ordinary note and half a step for each hit of a double note. At 0% each hit is the shortest trigger a downstream module can still see. At 100% an ordinary note holds for its whole step, so consecutive sounding notes join into one continuous gate; double hits retain the tiny low edge needed to retrigger. Notes the phrase wrote as ties hold through as written, whatever this is set to. |
 | **Layer 1 ▸ Melody reuse**, **Layer 2 ▸ Melody reuse** | Slider, 0% to 100%, per layer, default 75%. How much of the current melody the next `GEN` keeps. At 100% the next generation is the melody you already have; below it the new phrase is recognizably related but meaningfully changed; at 0% it starts from nothing. |
 | **Gen trigger targets** | Which layer the `GEN` input drives: Layer 1, Layer 2, or Both. |
 | **Drift CV targets** | Which layer the `DRIFT` input drives: Layer 1, Layer 2, or Both. |
