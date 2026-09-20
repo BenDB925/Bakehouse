@@ -18,7 +18,7 @@ First public release of both plugins.
 - `CLK`, `RST`, `GEN` and `DRIFT` inputs; `CV` and `GATE` outputs per layer.
   The `GEN` and `DRIFT` inputs are assignable to Layer 1, Layer 2 or Both.
 - **Gate length** and **Melody reuse** sliders per layer in the right-click
-  menu, both defaulting to 50%.
+  menu, defaulting to 50% and 25%.
 - Automatic root/scale sharing between Whisk instances, overridable with
   **Scale sync**.
 - No knob or CV change is heard mid-note: the sounding note keeps its pitch and

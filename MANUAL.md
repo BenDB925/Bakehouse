@@ -42,10 +42,10 @@ Each layer has the same four knobs. `SHIFT` gives each of them a second job.
 
 | Knob | Normal meaning | With `SHIFT` latched |
 | --- | --- | --- |
-| `PACE` | Clock divider/multiplier for this layer: `÷8 ÷6 ÷4 ÷3 ÷2 ÷1.5 ×1 ×1.5 ×2 ×3 ×4 ×6 ×8`, centre `×1`. Default `×1` on Layer 1 and `÷2` on Layer 2. | `PERS` sets the persona: Root Only, Triadic, Balanced, Colourful or Free. It controls how adventurous the note choices can be. Default Balanced. |
-| `DENS` | How much of the phrase you hear. Turn it down to keep only the most important notes, or turn it up to bring notes back. It responds from the next note, with no `GEN` needed. Default 70%. | `LEN` sets the phrase length from 1 to 32 steps. Default 16. |
-| `OCT` | Centre octave, `−3` to `+3`. Default `0` on Layer 1 and `−1` on Layer 2, so a new Whisk starts as a lead over a slower, lower counterline. | `RNG` sets how far the next generated phrase can roam: half an octave at minimum, about 1¼ at centre, and two octaves at maximum. Default a quarter of the way up. |
-| `DRIFT` | How **often** the melody evolves while it plays. At zero it stays where it is. Default 20%. | `SHP` sets how closely the second half of a phrase answers the first. Default 70%. |
+| `PACE` | Clock divider/multiplier for this layer: `÷8 ÷6 ÷4 ÷3 ÷2 ÷1.5 ×1 ×1.5 ×2 ×3 ×4 ×6 ×8`, centre `×1`. Default `×1` on Layer 1 and `÷2` on Layer 2. | `PERS` sets the persona: Root Only, Triadic, Balanced, Colourful or Free. It controls how adventurous the note choices can be. Default Balanced on Layer 1 and Triadic on Layer 2. |
+| `DENS` | How much of the phrase you hear. Turn it down to keep only the most important notes, or turn it up to bring notes back. It responds from the next note, with no `GEN` needed. Default 70%. | `LEN` sets the phrase length from 1 to 32 steps. Default 16 on Layer 1 and 8 on Layer 2. Turning it up keeps every note of the tune and writes new steps around it; turning it down hides the end without losing it. |
+| `OCT` | Centre octave, `−3` to `+3`. Default `0` on Layer 1 and `−1` on Layer 2, so a new Whisk starts as a lead over a slower, lower counterline. | `RNG` sets how far the next generated phrase can roam: half an octave at minimum, about 1¼ at centre, and two octaves at maximum. Default half of the way up. |
+| `DRIFT` | How **often** the melody evolves while it plays. At zero it stays where it is. Default 50% on Layer 1 and 25% on Layer 2. | `SHP` sets how closely the second half of a phrase answers the first. Default 70%. |
 
 #### What the personalities mean
 
@@ -76,7 +76,7 @@ Balanced can draw from the same 80% pool as Colourful.
 | Control | What it does |
 | --- | --- |
 | `GEN` | Generates a new melody for that layer. Hold `SHIFT` and press `GEN` to step *back* through that layer's melody history. Press it again to keep going back. |
-| `MODE` | Flip switch: left `ANCH` for **Anchored**, right `FREE` for **Free**. Anchored stays near home. Free travels further and can take rare, bold excursions. Switching mode does not rewrite the current melody. The current journey finishes first, then the new mode takes over. |
+| `MODE` | Flip switch: left `ANCH` for **Anchored**, right `FREE` for **Free**. Anchored stays near home. Free travels further and can take rare, bold excursions. Default Anchored on both layers. Switching mode does not rewrite the current melody. The current journey finishes first, then the new mode takes over. |
 | `PULSE` | Lights green while that layer's gate is high, and amber instead when the note you are hearing has evolved away from the phrase's home version. |
 
 ### Inputs
@@ -99,8 +99,8 @@ Balanced can draw from the same 80% pool as Colourful.
 
 | Item | What it does |
 | --- | --- |
-| **Layer 1 ▸ Gate length**, **Layer 2 ▸ Gate length** | Slider, 0% to 100%, per layer, default 50%. At 0% each note is the shortest trigger a downstream module can still see. At 100% a note holds for its whole step, so consecutive sounding notes join into one continuous gate. In between, the gate is that fraction of the step. Notes the phrase wrote as ties hold through as written, whatever this is set to. |
-| **Layer 1 ▸ Melody reuse**, **Layer 2 ▸ Melody reuse** | Slider, 0% to 100%, per layer, default 50%. How much of the current melody the next `GEN` keeps. At 100% the next generation is the melody you already have; below it the new phrase is recognizably related but meaningfully changed; at 0% it starts from nothing. |
+| **Layer 1 ▸ Gate length**, **Layer 2 ▸ Gate length** | Slider, 0% to 100%, per layer, default 50%. The percentage is relative to that note's full slot: one step for an ordinary note and half a step for each hit of a double note. At 0% each hit is the shortest trigger a downstream module can still see. At 100% an ordinary note holds for its whole step, so consecutive sounding notes join into one continuous gate; double hits retain the tiny low edge needed to retrigger. Notes the phrase wrote as ties hold through as written, whatever this is set to. |
+| **Layer 1 ▸ Melody reuse**, **Layer 2 ▸ Melody reuse** | Slider, 0% to 100%, per layer, default 25%. How much of the current melody the next `GEN` keeps. Each press keeps its share of the tune playing just before it, so one press gives a close cousin and mashing `GEN` seven or eight times wanders somewhere completely different. At 100% the next generation is the melody you already have; at 0% it starts from nothing. It means the same in every persona. |
 | **Gen trigger targets** | Which layer the `GEN` input drives: Layer 1, Layer 2, or Both. |
 | **Drift CV targets** | Which layer the `DRIFT` input drives: Layer 1, Layer 2, or Both. |
 | **Scale sync** | Auto, Master or Off. See [Scale sync](#scale-sync). |
@@ -142,6 +142,15 @@ note keeps its pitch and full length. If you shorten `LEN` during a phrase, the
 current note still finishes, so the shorter phrase may wrap early. Clock, reset
 and generate remain immediate.
 
+Turning `LEN` up past the end of the tune keeps every note of it exactly where
+it is and fills the new steps the way `GEN` would: the tune's hook comes back
+in them and the phrase ends properly on its new last step. The new steps are
+worked out afresh from the tune for each length, so the same `LEN` always
+gives the same phrase however you reached it — notes you only hear in the
+added steps may change while you are still turning. Turning `LEN` down into
+the tune hides its end; turn it back up and exactly the hidden notes return.
+`GEN`, a completed undo or a scene launch gives `LEN` a new tune to grow from.
+
 Saving and reloading a patch keeps what you are hearing and what home is.
 
 ---
@@ -179,7 +188,7 @@ brings back.
 | Control | What it does |
 | --- | --- |
 | `PHRASE` / `NOTE` | **`PHRASE`** (left, default) waits for the next Layer 1 phrase boundary, then starts both layers from the beginning. **`NOTE`** (right) lets the current Layer 1 note finish and plays one more as a lead-in. It hands over on the following Layer 1 onset. Each layer enters near the same point in its saved phrase, so the new scene joins in mid-phrase rather than starting over. |
-| `FLOW` | At zero (default) the scene cuts in instantly. Turned up it dissolves instead, taking up to about three playthroughs, with the incoming scene's most characteristic notes crossing over first. Cue another scene during a changeover and it re-aims over a fresh changeover of the same length. |
+| `FLOW` | At maximum (default) the scene dissolves in over about three playthroughs, with the incoming scene's most characteristic notes crossing over first. Turned down it arrives sooner; at zero it cuts in instantly. Cue another scene during a changeover and it re-aims over a fresh changeover of the same length. |
 | `ALL` / `TUNE` | **`ALL`** (left, default) recalls the saved melodies and all eight saved controls per layer. **`TUNE`** (right) recalls only the melodies and leaves the live controls where they are. A tune shorter than the current `LEN` repeats to fill the phrase. A longer one keeps its opening and final note while dropping interior notes to fit. Its pitches are adjusted to the live `RNG` and `PERS`. |
 
 ### Scale shift
