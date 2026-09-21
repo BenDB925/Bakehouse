@@ -16,7 +16,7 @@ own. Everything in the Whisk section works without the Expander or its plugin.
 
 ## Whisk
 
-*Free plugin `Bakehouse` · 12 HP · Sequencer, Random*
+*Free plugin `Bakehouse` · 12 HP · Sequencer, Random, Dual*
 
 Whisk plays two independent melodies, **Layer 1** and **Layer 2**, in one shared
 scale. Each layer starts with a generated phrase and gradually changes as it
@@ -34,7 +34,7 @@ Patch a clock in, take pitch and gate out of each layer into a voice, press
 | `ROOT` | Tonic of the scale, `C` to `B`. |
 | `SCALE` | Major, Minor, Dorian, Mixolydian, Pent. Major, Pent. Minor, Blues, Chromatic. |
 | `SHIFT` | Latch. While it is lit, the four per-layer knobs of **both** layers change meaning (see below). Nothing moves until you turn a knob. |
-| `+ EXPANDER` / `− EXPANDER` | Small button in the header. It adds a Whisk Expander directly to the right, or removes the attached one and its cables. Either action can be undone. If the paid plugin is not installed, the add button does nothing. |
+| `EXPANDER` | Small button in the header. When Bakehouse Treats is installed and licensed it reads `+ EXPANDER` / `- EXPANDER`, adding the Expander directly to Whisk's right or removing it and its cables; either action can be undone. Otherwise it stays dimmed with a lock, and its tooltip points to Whisk's right-click menu. |
 
 ### Per-layer knobs
 
@@ -75,7 +75,7 @@ Balanced can draw from the same 80% pool as Colourful.
 
 | Control | What it does |
 | --- | --- |
-| `GEN` | Generates a new melody for that layer. Hold `SHIFT` and press `GEN` to step *back* through that layer's melody history. Press it again to keep going back. |
+| `GEN` | Generates a new melody for that layer. Hold `SHIFT` and press `GEN` — the panel prints `UNDO` for this — to step *back* through that layer's melody history. Press it again to keep going back. |
 | `MODE` | Flip switch: left `ANCH` for **Anchored**, right `FREE` for **Free**. Anchored stays near home. Free travels further and can take rare, bold excursions. Default Anchored on both layers. Switching mode does not rewrite the current melody. The current journey finishes first, then the new mode takes over. |
 | `PULSE` | Lights green while that layer's gate is high, and amber instead when the note you are hearing has evolved away from the phrase's home version. |
 
@@ -104,7 +104,9 @@ Balanced can draw from the same 80% pool as Colourful.
 | **Gen trigger targets** | Which layer the `GEN` input drives: Layer 1, Layer 2, or Both. |
 | **Drift CV targets** | Which layer the `DRIFT` input drives: Layer 1, Layer 2, or Both. |
 | **Scale sync** | Auto, Master or Off. See [Scale sync](#scale-sync). |
-| **Add Whisk Expander** / **Remove Whisk Expander** | The same action as the panel's `+ EXPANDER` button. |
+| **Add Whisk Expander** / **Remove Whisk Expander** | Available when Bakehouse Treats is licensed; the same undoable action as the panel button. |
+| **Buy Whisk Expander...** | Shown when the paid Expander is not available. Opens its VCV Library page. While Rack is still checking or downloading a key, a checking message appears instead of asking you to buy. If the plugin is installed but its key is missing, **Whisk Expander license unavailable** appears above it. |
+| **Already purchased?** | Owner help: sign into the VCV account used for the purchase, use **Library > Update all** to install or refresh the key, or contact VCV license support. |
 
 ### What DRIFT actually does
 
@@ -171,6 +173,16 @@ plugin, Whisk carries on as normal. Move the Expander away during a patch and
 any pitch shift is removed immediately. Its trigger outputs also return low.
 
 It is not available on MetaModule.
+
+### If it is not licensed
+
+Without a Bakehouse Treats licence the Expander still appears in the module
+browser and can be placed, but Rack covers its panel with a lock overlay and
+Whisk treats it as if it were not there: its knobs, jacks and buttons do
+nothing, and no pitch shift reaches either layer. Clicking the locked panel
+opens the Whisk Expander's VCV Library page, and so does **Buy Whisk
+Expander...** in the Expander's own right-click menu. Once the key arrives the
+panel unlocks by itself, with no need to remove and re-add it.
 
 ### Scene launcher
 

@@ -21,6 +21,9 @@ First public release of both plugins.
   menu, defaulting to 50% and 25%.
 - Automatic root/scale sharing between Whisk instances, overridable with
   **Scale sync**.
+- The header Expander control now shows a readable dimmed lock when the paid
+  addition is unavailable. Whisk's menu offers its Library page and a separate
+  sign-in, update/install and license-support route for existing owners.
 - No knob or CV change is heard mid-note: the sounding note keeps its pitch and
   full length, and the change lands at the next onset.
 
